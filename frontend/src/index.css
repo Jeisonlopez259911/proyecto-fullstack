@@ -1,0 +1,16 @@
+@import "tailwindcss";
+/* Variables institucionales */
+
+:root {
+    --color-primary: #0B57D0;
+    --color-secondary: #1E3A8A;
+    --color-success: #16A34A;
+    --color-danger: #DC2626;
+    --color-warning: #F59E0B;
+    --color-background: #F8FAFC;
+}
+
+body {
+  background: var(--color-background);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}

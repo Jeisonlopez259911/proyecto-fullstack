@@ -95,3 +95,4 @@ Dashboard.tsx
 Navbar.tsx
 Sidebar.tsx
 Footer.tsx
+NotFound.tsx

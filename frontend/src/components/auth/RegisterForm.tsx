@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner"
 import Button from "../ui/button";
@@ -55,7 +55,7 @@ export default function RegisterForm() {
     return (
         <form 
           onSubmit={handleSubmit(onSubmit)}
-          className="space-x-0.5"
+          className="space-y-4"
         >
           <Input
             label="Nombre"
@@ -85,45 +85,67 @@ export default function RegisterForm() {
             {...register("password")}
             error={errors.password?.message}
           />
-          <select className="form-control" {...register("rol", { onChange: handleRolChange })}>
-            <option value="">Selecciona tu rol</option>
-            <option value="ESTUDIANTE">ESTUDIANTE</option>
-            <option value="DOCENTE">DOCENTE</option>
-          </select>
-          {errors.rol && <p className="text-red-500">{errors.rol.message}</p>}
+          <div className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Rol
+            </label>
+            <select className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" {...register("rol", { onChange: handleRolChange })}>
+              <option value="">Selecciona tu rol</option>
+              <option value="ESTUDIANTE">ESTUDIANTE</option>
+              <option value="DOCENTE">DOCENTE</option>
+            </select>
+            {errors.rol && <p className="mt-1 text-sm text-red-500 flex items-center gap-1">{errors.rol.message}</p>}
+          </div>
+
           {rolSeleccionado == "ESTUDIANTE" && (
-            <>
-              <select className="form-control" {...register("grado")}>
+            <div className="mb-4">
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Grado
+              </label>
+              <select className="f w-full px-4 py-3 rounded-lg border-2 transition-all duration-200focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" {...register("grado")}>
                 <option value="">Grado</option>
                 <option value="primero">Primero</option>
                 <option value="segundo">Segundo</option>
                 <option value="tercero">Tercero</option>
               </select>
-              {errors.grado && <p className="text-red-500">{errors.grado.message}</p>}
-            </>
+              {errors.grado && <p className="mt-1 text-sm text-red-500 flex items-center gap-1">{errors.grado.message}</p>}
+            </div>
           )}
           {rolSeleccionado == "DOCENTE" && (
           <>
-            <select className="form-control" {...register("especialidad")}>
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Especialidad
+            </label>
+            <select className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" {...register("especialidad")}>
               <option value="">Especialidad</option>
               <option value="matematicas">Matemáticas</option>
               <option value="ciencias">Ciencias</option>
               <option value="historia">Historia</option>
             </select>
-            {errors.especialidad && <p className="text-red-500">{errors.especialidad.message}</p>}
-            <select className="form-control" {...register("profesion")}>
-              <option value="">Profesión</option>
-              <option value="maestro">Maestro</option>
-              <option value="ingeniero">Ingeniero</option>
-              <option value="medico">Médico</option>
-            </select>
-            {errors.profesion && <p className="text-red-500">{errors.profesion.message}</p>}
+            {errors.especialidad && <p className="mt-1 text-sm text-red-500 flex items-center gap-1">{errors.especialidad.message}</p>}
+          </div>
 
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Profesión
+              </label>
+              <select className="w-full px-4 py-3 rounded-lg border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" {...register("profesion")}>
+                <option value="">Profesión</option>
+                <option value="maestro">Maestro</option>
+                <option value="ingeniero">Ingeniero</option>
+                <option value="medico">Médico</option>
+              </select>
+              {errors.profesion && <p className="mt-1 text-sm text-red-500 flex items-center gap-1">{errors.profesion.message}</p>}
+            </div>
           </>
           )}
           <Button loading={loading}>
             Registrarse
           </Button>
+          <NavLink to="/" className="text-sm text-gray-500 hover:text-gray-700">
+            ¿Ya tienes cuenta? Inicia Sesion
+          </NavLink>
         </form>
     )
 }

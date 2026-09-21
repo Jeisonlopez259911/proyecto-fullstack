@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"
+import { toast } from "sonner";
 
 export default function Navbar() {
 
@@ -9,6 +10,9 @@ export default function Navbar() {
     const handleLogout = async () => {
         try {
             await logout();
+            toast.success("¡Hasta pronto!", {
+                duration: 3000
+            });
             navigate("/");  // ← Redirigir al login
         } catch (error) {
             console.error("Error al cerrar sesión:", error);

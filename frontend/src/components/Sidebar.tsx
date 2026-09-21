@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"
+import { toast } from "sonner";
 
 export default function Sidebar() {
 
@@ -16,6 +17,9 @@ export default function Sidebar() {
         const handleLogout = async () => {
         try {
             await logout();
+            toast.success("¡Hasta pronto!", {
+                duration: 3000
+            });
             navigate("/");  // ← Redirigir al login
         } catch (error) {
             console.error("Error al cerrar sesión:", error);
